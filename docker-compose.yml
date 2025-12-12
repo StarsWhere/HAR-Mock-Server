@@ -1,0 +1,15 @@
+services:
+  history-mock:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: history-mock:latest
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      PORT: ${PORT:-3000}
+      HAR_PATHS: ${HAR_PATHS:-/app/history.har}
+    volumes:
+      - ./history.har:/app/history.har:ro
