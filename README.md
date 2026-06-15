@@ -1,5 +1,31 @@
 # HAR Mock Server
 
+<!-- starswhere-docs-overview -->
+
+## 项目概览
+
+**定位**：一个通过 HAR 录制数据提供 mock 响应的 Node.js 服务，适合前端联调和接口回放。
+
+**核心功能**：
+- 读取 HAR 数据并提供 HTTP mock
+- 环境变量控制服务配置
+- Docker/Compose 部署支持
+- 单服务结构便于嵌入联调流程
+
+**技术栈**：JavaScript、Node.js、Docker、Docker Compose。
+
+**目录与模块**：`src/server.js` 是服务入口；`src/config.js` 管理配置；根目录 Docker 文件负责容器化。
+
+**使用方式**：按 `package.json` 启动服务，并准备对应 HAR 数据；容器化场景参考 `docker-compose.yml`。
+
+**配置说明**：`.env.example` 与 `src/config.js` 控制端口、HAR 路径和匹配策略。
+
+**适用场景**：适合前端离线开发、第三方接口回放、回归调试和演示环境。
+
+**注意事项**：HAR 文件可能包含 Cookie、Authorization 和个人数据，提交或共享前必须脱敏。
+
+<!-- /starswhere-docs-overview -->
+
 基于 HAR (HTTP Archive) 录制数据的通用 HTTP Mock 服务。它会解析任意 HAR 文件中的请求与响应，并在运行时根据请求 URL 与负载的相似度返回最匹配的响应，适用于离线调试、接口契约验证或后端不可用场景下的回放。
 
 ## 功能亮点
